@@ -87,9 +87,22 @@
               Search
             </button>
           </form>
+
+          
+          {% if user.is_authenticated %}
+           <form method="post" action="{% url 'logout' %}">
+           {% csrf_token %}
+           <a class="btn btn-primary ms-3" href="{% url 'tweet_list' %}">Tweet Home</a>
+           <button type="submit" class="btn btn-danger ms-3">Logout</button>
+          </form>
+          {% else %}
+          <a class="btn btn-primary ms-3" href="{% url 'login' %}">Login</a>
+          <a class="btn btn-primary ms-3" href="{% url 'register' %}">Register</a>
+          {% endif %}
         </div>
       </div>
     </nav>
+    
     <div class="container">
         {% block content %}
 
